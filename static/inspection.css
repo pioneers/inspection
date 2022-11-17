@@ -1,0 +1,42 @@
+body{
+    background-image: url("https://images-gmi-pmc.edge-generalmills.com/75593ed5-420b-4782-8eae-56bdfbc2586b.jpg");
+}
+
+.box{
+    box-sizing: border-box;
+    display: table-cell;
+   
+    width: 392px;
+    height: 83px;
+
+    font-size: 40px;
+    font-weight: 400;
+    text-align: center;
+    background: #D9D9D9;
+    border: 5px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+.team-box-blue{
+    display: table-cell;
+    width: 350px;
+    height: 350px;
+    background: rgba(91, 119, 217, 0.9);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 19px;
+}
+
+.team-box-yellow{
+    display: table-cell;
+    display: center;
+
+  
+
+    width: 350px;
+    height: 350px;
+
+    background: rgba(217, 189, 91, 0.9);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 19px;
+}

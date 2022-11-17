@@ -3,10 +3,8 @@ import time
 import simpleaudio as sa
 from ydl import YDLClient
 from alliance import Alliance
-from timer import TimerGroup, Timer
 from utils import *
 from runtimeclient import RuntimeClientManager
-from protos.run_mode_pb2 import IDLE, AUTO, TELEOP
 from protos.gamestate_pb2 import State
 from sheet import Sheet
 from robot import Robot
@@ -17,11 +15,6 @@ from robot import Robot
 YC = YDLClient(YDL_TARGETS.SHEPHERD)
 MATCH_NUMBER: int = -1
 GAME_STATE: str = STATE.END
-TIMERS = TimerGroup()
-GAME_TIMER = Timer(TIMERS,
-    lambda: YC.send(SHEPHERD_HEADER.STAGE_TIMER_END()))
-BLIZZARD_WARNING_TIMER = Timer(TIMERS,
-    lambda: YC.send(SHEPHERD_HEADER.SOUND_BLIZZARD_WARNING()))
 
 ALLIANCES = {
     ALLIANCE_COLOR.GOLD: Alliance(Robot("", -1), Robot("", -1)),
@@ -29,8 +22,6 @@ ALLIANCES = {
 }
 
 CLIENTS = RuntimeClientManager(YC)
-
-
 
 def start():
     '''
@@ -52,13 +43,16 @@ def start():
         else:
             print(f"Invalid State: {GAME_STATE}")
 
+
+#we don't need this but its an example of how to pull from the google sheets
 def pull_from_sheets():
     while True:
         if not TIMERS.is_paused() and GAME_STATE not in [STATE.END, STATE.SETUP]:
-            Sheet.send_scores_for_icons(MATCH_NUMBER)
+            Sheet.send_scores_for_icons(MATCH_NUMBER) #need this for the future
         time.sleep(2.0)
 
 
+#NEED
 def set_match_number(match_num):
     '''
     Retrieves all match info based on match number and sends this information to the UI.
@@ -75,7 +69,7 @@ def set_match_number(match_num):
     Sheet.get_match(match_num)
 
 
-
+#NEED
 def set_teams_info(teams):
     '''
     Caches info and sends it to any open UIs.
@@ -111,37 +105,7 @@ def to_setup(match_num, teams):
     reset_match()
 
 
-def reset_match():
-    '''
-    Resets the current match, moving back to the setup stage but with the current teams loaded in.
-    Should reset all state being tracked by Shepherd.
-    ****THIS METHOD MIGHT NEED UPDATING EVERY YEAR BUT SHOULD ALWAYS EXIST****
-    '''
-    global GAME_STATE
-    GAME_STATE = STATE.SETUP
-    TIMERS.reset_all()
-    disable_robots()
-    CLIENTS.reconnect_all()
-    ALLIANCES[ALLIANCE_COLOR.BLUE].reset()
-    ALLIANCES[ALLIANCE_COLOR.GOLD].reset()
-    send_state_to_ui()
-    print("ENTERING SETUP STATE")
-
-    # temporary code for exhibition, remove later
-    YC.send(UI_HEADER.SCORES(
-        blue_score=ALLIANCES[ALLIANCE_COLOR.BLUE].score,
-        gold_score=ALLIANCES[ALLIANCE_COLOR.GOLD].score
-    ))
-
-
-def set_state(state):
-    global GAME_STATE
-    GAME_STATE = state
-    send_score_to_ui()
-    send_state_to_ui()
-    print(f"ENTERING {state} STATE")
-
-
+#Example of how to send scores to the spreadsheet
 def to_end():
     '''
     Go to the end state, finishing the game and flushing scores to the spreadsheet.
@@ -164,18 +128,7 @@ def to_end():
     print("ENTERING END STATE")
 
 
-
-
-
-def set_robot_ip(ind, robot_ip):
-    '''
-    Sets the given client ip, and attempts to connect to it
-    '''
-    CLIENTS.connect_client(ind, robot_ip)
-
-
-
-
+#maybe
 def send_match_info_to_ui():
     '''
     Sends all match info to the UI
@@ -187,6 +140,7 @@ def send_match_info_to_ui():
         ALLIANCES[ALLIANCE_COLOR.GOLD].robot2.info_dict(CLIENTS.clients[INDICES.GOLD_2].robot_ip),
     ]))
 
+#example of senfing infor to UI 
 def send_state_to_ui():
     '''
     Sends the GAME_STATE to the UI
@@ -198,17 +152,6 @@ def send_state_to_ui():
         YC.send(UI_HEADER.STATE(state=GAME_STATE, start_time=st, state_time=state_time))
     else:
         YC.send(UI_HEADER.STATE(state=GAME_STATE))
-
-
-def send_connection_status_to_ui():
-    '''
-    Sends the connection status of all runtime clients to the UI
-    '''
-    CLIENTS.send_connection_status_to_ui()
-
-
-
-
 
 
 
