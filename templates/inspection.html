@@ -20,13 +20,22 @@
 
         <!-- BLUE BOX -->
         <div class = "team-box-blue">
-            <input class = "input" placeholder ="Team Name 1" type = "text"></input>
+            <!--TEST-->
+            <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <input class = "input" placeholder ="Team Name 1" type = "text"       draggable="true" ondragstart="drag(event)" id="drag1"></input>
+
+            </div>
+        
+
+
             <input class = "input" placeholder ="Team Name 2" type = "text"></input>
             <input class = "input" placeholder ="Team Name 3" type = "text"></input>
 
         </div>
 
         <div class = "team-box-blue">
+
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             <!-- We are place the team names into here -->
         </div>
 
@@ -57,7 +66,7 @@
         </div>
 
         <div class = "team-box-yellow">
-            <!-- We are place the team names into here -->
+            
         </div>
 
         <div class = "team-box-yellow">
