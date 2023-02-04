@@ -6,30 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inspection</title>
     <link rel="stylesheet" href="../static/inspection.css">
-    <script>
-
-    function allowDrop(ev) {
-        ev.preventDefault();
-        console.log("allowDrop");
-    }
+    <script src ="../static/inspection.js"> </script>
     
-    function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
-        console.log("drag");
-
-    }
-    
-    function drop(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
-        console.log("drop");
-
-    }
-
-  
-    </script> 
-
 </head>
 <body>
     <div class="header">
@@ -41,58 +19,44 @@
     
     <div class = "container">
 
-        <!-- BLUE BOX -->
+        <!-- BLUE BOX = QUEUING -->
         <div class = "team-box-blue" id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <!--TEST-->
-            <div >
-                <input class = "input" placeholder ="Team Name 1" type = "text" draggable="true" ondragstart="drag(event)" id="drag1"></input>
-
-            </div>
-        
-
-
+            
+            <input class = "input" id = "queuing"
+             placeholder ="Team Name 1" type = "text" draggable="true" ondragstart="drag(event)" id="drag1"></input>
             <input class = "input" placeholder ="Team Name 2" type = "text" draggable="true" ondragstart="drag(event)" id="drag2"></input>
             <input class = "input" placeholder ="Team Name 3" type = "text" draggable="true" ondragstart="drag(event)" id="drag3"></input>
 
         </div>
 
-        <div class = "team-box-blue" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
-
-            <div ></div>
-            <!-- We are place the team names into here -->
+        <!-- BLUE BOX = Inspecting -->
+        <div class = "team-box-blue" id = "inspecting"
+        id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
         </div>
 
-        <div class = "team-box-blue" id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <!-- BLUE BOX = playing -->
+        <div class = "team-box-blue" id="playing" ondrop="drop(event)" ondragover="allowDrop(event)">
 
             <input class = "input" placeholder ="Team Name #" type = "text" draggable="true" ondragstart="drag(event)" id="drag4"></input>
             <input class = "input" placeholder ="Team Name #" type = "text" draggable="true" ondragstart="drag(event)" id="drag5"></input>
             <input class = "input" placeholder ="Team Name #" type = "text" draggable="true" ondragstart="drag(event)" id="drag6"></input>
         </div>
 
-        <!-- WHITE MIDDLE BOX -->
-        <div class = "match-number">
-            <input placeholder="Match Number"> </input>
-        </div>
+        
 
-        <div class = "match-number">
-            <input placeholder="Match Number"> </input>
-        </div>
-        <div class = "match-number">
-            <input placeholder="Match Number"> </input>
-        </div>
-
-        <!-- YELLOW BOX -->
+        <!-- YELLOW BOX  = Queuing -->
         <div class = "team-box-yellow">
-            <input class = "input" placeholder ="Team Name 4" type = "text"></input>
+            <input class = "input" id ="queuing"
+            placeholder ="Team Name 4" type = "text"></input>
             <input class = "input" placeholder ="Team Name 5" type = "text"></input>
             <input class = "input" placeholder ="Team Name 6" type = "text"></input>
         </div>
 
-        <div class = "team-box-yellow">
-            
-        </div>
+        <!-- YELLOW BOX = Inspecting -->
+        <div class = "team-box-yellow" id = "inspecting"> </div>
 
-        <div class = "team-box-yellow">
+        <!-- YELLOW BOX = Playing -->
+        <div class = "team-box-yellow" id = "playing">
             <input class = "input" placeholder ="Team Name #" type = "text"></input>
             <input class = "input" placeholder ="Team Name #" type = "text"></input>
             <input class = "input" placeholder ="Team Name #" type = "text"></input>
