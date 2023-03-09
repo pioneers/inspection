@@ -1,22 +1,3 @@
-function allowDrop(ev) {
-  ev.preventDefault();
-  console.log("allowDrop");
-}
-
-function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-  console.log("drag");
-  test();
-}
-
-function drop(ev) {
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-  console.log("drop");
-
-}
-
 function gapiLoaded() {
   const API_KEY = 'AIzaSyB5cHv1n6pMZ326cG_jGUhbgadmIB8KBkI';
   const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
@@ -33,10 +14,10 @@ async function getBlueQueue() {
     // fetching the 1 line 
     response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '1FtbpxMN9mF1hbZNHS1_ASNrEOf5wIKpRxvI_hHL3gtk',
-      range: 'Sheet41!D3:D6',
+      range: 'Inspection!A2:A5',
     });
 
-    console.log('this is', response) //prints shows the spreadsheet values 
+    console.log('t', response) //prints shows the spreadsheet values 
   } catch (err) {
     console.log(err.message)
     //document.getElementById('content').innerText = err.message;
@@ -46,7 +27,7 @@ async function getBlueQueue() {
   game_data = response.result.values
 
   console.log('here is the array', game_data) //printing the range 
-  console.log('index show', game_dat.at(0)) //printing the first one 
+  console.log('index show', game_data.at(0)) //printing the first one 
 }
 
 
@@ -56,7 +37,7 @@ async function listMajors() {
     // fetching the 1 line 
     response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '1FtbpxMN9mF1hbZNHS1_ASNrEOf5wIKpRxvI_hHL3gtk',
-      range: 'Sheet41!A2',
+      range: 'Inspection!A2:A5',
     });
     console.log(response)
   } catch (err) {
