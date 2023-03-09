@@ -12,7 +12,7 @@ body{
     display: center;
 
    
-    padding: 11px;
+    padding: 2%;
     
 
     font-size: 25px;
@@ -36,10 +36,7 @@ body{
 
 .input {
     background: #D9D9D9;
-   
-    padding-top: 2%;
-    padding-bottom: 1%;
-
+    padding: 3% !important;
     border-radius: 7px;
     border: 2px solid #000000;
 }
@@ -50,7 +47,7 @@ body{
     background: rgba(91, 119, 217, 0.9);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 19px;
-    padding: 4%; /*size of the box */
+    padding: 5%; /*size of the box */
     margin-top: 10%;
 
 
@@ -66,7 +63,7 @@ body{
     background: rgba(234, 236, 244, 0.8);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 19px;
-    padding: 4%;
+
 }
 
 
@@ -79,5 +76,9 @@ body{
     display:grid;
     grid-template-rows: auto auto auto;
     grid-gap: 5px;
+}
+
+#queuing, #inspect, #playing {
+
 }
 

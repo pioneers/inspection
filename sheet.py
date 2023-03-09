@@ -17,13 +17,39 @@ from utils import *
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 CLIENT_SECRET_FILE = 'sheets/client_secret.json'
 USER_TOKEN_FILE = "sheets/user_token.json" # user token; do not upload to github (.gitignore it)
-YC = YDLClient()
+#YC = YDLClient()
 
 """
 Sheet structure: [match #, blue 1 #, blue 1 name, blue 1 ip, blue 2 #, ...]
 """
 
+#create a new file that will run this command -> threading.Thread(target=pull_from_sheets, daemon=True).start() 
+#replicate the qiu
+#def read_and_write_from_sheet():
+        # read queue/inspect/playing info from sheet 
+        # with google sheets js api
+
+        # write queue/inspect/playing info to page
+        # for each queueing team
+            # add the div for that team
 class Sheet:
+# this is in javascript
+    @staticmethod
+    def read_and_write_from_sheet():
+
+        # read queue/inspect/playing info from sheet
+
+        print("here in first function")
+        spreadsheet = Sheet.__get_authorized_sheet()
+        game_data = spreadsheet.values().get(spreadsheetId=CONSTANTS.SPREADSHEET_ID, range="Sheet41!A1:A3").execute()['values']
+        print(game_data)
+        body = {
+            'values': [["Hi"], ["heee"]]
+        }
+        #read from the values 
+        spreadsheet.values().update(spreadsheetId=CONSTANTS.SPREADSHEET_ID,
+            range="Sheet41!A2:A3", body=body, valueInputOption="RAW").execute()
+    
     @staticmethod
     def get_match(match_number): #need
         '''
@@ -171,3 +197,7 @@ class Sheet:
             }
             spreadsheet.values().update(spreadsheetId=CONSTANTS.SPREADSHEET_ID,
                 range=range_name, body=body, valueInputOption="RAW").execute()
+
+if __name__ == "__main__":
+    print('here')
+    Sheet.read_and_write_from_sheet()
