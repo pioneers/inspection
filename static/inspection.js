@@ -9,12 +9,14 @@ function gapiLoaded() {
       getBlueQueue();
   });
 }
+
+//issue? We need to reload the page, each time we make a change to the google sheet 
 async function getBlueQueue() {
   try {
     // fetching the 1 line 
     response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '1c9NUoB1prQdrBfAAkaSKJCnIGrAQV8kx5GZKEeIAmWs',
-      range: 'Inspection!A3',
+      range: 'Inspection!A2:C7',
     });
     console.log('t', response) //prints shows the spreadsheet values 
   } catch (err) {
@@ -33,9 +35,18 @@ async function getBlueQueue() {
   console.log('index show', game_data.at(0)) //printing the first one 
 
   //EX:
-  document.getElementById('que1').innerHTML = game_data.at(0); //this places the game_data into the first label 
-}
+  //document.getElementById('que1').innerHTML = game_data.at(0).at(0); //this places the game_data into the first label 
 
+
+  for (let i = 0; i < game_data.length; i++) {
+    //we are printing for each row 
+    row = game_data.at(i); //this is the first row 
+    document.getElementById('que'+ String(i)).innerHTML = row.at(0); //this places the game_data into the first input
+    document.getElementById('insp'+ String(i)).innerHTML = row.at(1);
+    document.getElementById('play'+ String(i)).innerHTML = row.at(2);
+    console.log("testing row: ", row)
+}
+}
 
 
 async function listMajors() {
