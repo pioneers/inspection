@@ -1,5 +1,5 @@
 function gapiLoaded() {
-  const API_KEY = 'AIzaSyB5cHv1n6pMZ326cG_jGUhbgadmIB8KBkI';
+  const API_KEY = 'AIzaSyCtdsxq4_TWBoQU-gZEiA6YVQZUaweN6C8'; //CHANGE
   const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
   gapi.load('client', async () => {
       await gapi.client.init({
@@ -16,13 +16,16 @@ async function getBlueQueue() {
       spreadsheetId: '1FtbpxMN9mF1hbZNHS1_ASNrEOf5wIKpRxvI_hHL3gtk',
       range: 'Inspection!A2:C',
     });
-
     console.log('t', response) //prints shows the spreadsheet values 
   } catch (err) {
+    console.log("NOT WORKING")
+
     document.getElementById('content').innerText = err.message;
-    //document.getElementById('content').innerText = err.message;
     return;
   }
+    //Getting Everything from Google SHeet 
+      //1. make two arrays - one for blue and yello box =-
+      //2. get the ranges for blu queue. 
 
   game_data = response.result.values
 /*
@@ -37,10 +40,8 @@ async function getBlueQueue() {
     document.getElementById('play'+ string(i)).innerHTML = row.at(2)
     
 
-
+  }
 }
-}
-
 
 
 async function listMajors() {
@@ -48,7 +49,7 @@ async function listMajors() {
     // fetching the 1 line 
     response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '1FtbpxMN9mF1hbZNHS1_ASNrEOf5wIKpRxvI_hHL3gtk',
-      range: 'Inspection!A2:C',
+      range: 'Inspection!A2:A5',
     });
     console.log(response)
   } catch (err) {
