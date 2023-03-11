@@ -14,7 +14,7 @@ async function getBlueQueue() {
     // fetching the 1 line 
     response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '1FtbpxMN9mF1hbZNHS1_ASNrEOf5wIKpRxvI_hHL3gtk',
-      range: 'Inspection!A2:A5',
+      range: 'Inspection!A2:C',
     });
 
     console.log('t', response) //prints shows the spreadsheet values 
@@ -25,12 +25,20 @@ async function getBlueQueue() {
   }
 
   game_data = response.result.values
-
+/*
   console.log('here is the array', game_data) //printing the range 
   console.log('index show', game_data.at(0)) //printing the first one 
-
+*/
   //EX:
-  document.getElementById('que1').innerHTML = game_data.at(0); //this places the game_data into the first input 
+  for (let i = 0; i < game_data.length; i++) {
+    row = game_data[0];
+    document.getElementById('que'+ string(i)).innerHTML = row.at(0) //this places the game_data into the first input 
+    document.getElementById('insp'+ string(i)).innerHTML = row.at(1)
+    document.getElementById('play'+ string(i)).innerHTML = row.at(2)
+    
+
+
+}
 }
 
 
@@ -40,7 +48,7 @@ async function listMajors() {
     // fetching the 1 line 
     response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '1FtbpxMN9mF1hbZNHS1_ASNrEOf5wIKpRxvI_hHL3gtk',
-      range: 'Inspection!A2:A5',
+      range: 'Inspection!A2:C',
     });
     console.log(response)
   } catch (err) {
@@ -86,4 +94,3 @@ function doPost(e) {
 }
  
  */
- 
