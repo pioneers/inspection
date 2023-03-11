@@ -19,7 +19,7 @@ async function getBlueQueue() {
 
     console.log('t', response) //prints shows the spreadsheet values 
   } catch (err) {
-    console.log(err.message)
+    document.getElementById('content').innerText = err.message;
     //document.getElementById('content').innerText = err.message;
     return;
   }
@@ -28,6 +28,9 @@ async function getBlueQueue() {
 
   console.log('here is the array', game_data) //printing the range 
   console.log('index show', game_data.at(0)) //printing the first one 
+
+  //EX:
+  document.getElementById('que1').innerHTML = game_data.at(0); //this places the game_data into the first input 
 }
 
 
@@ -41,12 +44,15 @@ async function listMajors() {
     });
     console.log(response)
   } catch (err) {
-    console.log(err.message)
+    document.getElementById('content').innerText = err.message;
     //document.getElementById('content').innerText = err.message;
     return;
   }
 
-  game_data = response.result.values
+  const output = range.values.reduce(
+    (str, row) => `${str}${row[0]}, ${row[4]}\n`,
+    'Name, Major:\n');
+  document.getElementById('content').innerText = output;
 
   console.log(game_data)
 }
