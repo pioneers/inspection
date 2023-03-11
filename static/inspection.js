@@ -1,5 +1,5 @@
 function gapiLoaded() {
-  const API_KEY = 'AIzaSyB5cHv1n6pMZ326cG_jGUhbgadmIB8KBkI';
+  const API_KEY = 'AIzaSyCtdsxq4_TWBoQU-gZEiA6YVQZUaweN6C8'; //CHANGE
   const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
   gapi.load('client', async () => {
       await gapi.client.init({
@@ -13,16 +13,19 @@ async function getBlueQueue() {
   try {
     // fetching the 1 line 
     response = await gapi.client.sheets.spreadsheets.values.get({
-      spreadsheetId: '1FtbpxMN9mF1hbZNHS1_ASNrEOf5wIKpRxvI_hHL3gtk',
-      range: 'Inspection!A2:A5',
+      spreadsheetId: '1c9NUoB1prQdrBfAAkaSKJCnIGrAQV8kx5GZKEeIAmWs',
+      range: 'Inspection!A3',
     });
-
     console.log('t', response) //prints shows the spreadsheet values 
   } catch (err) {
+    console.log("NOT WORKING")
+
     document.getElementById('content').innerText = err.message;
-    //document.getElementById('content').innerText = err.message;
     return;
   }
+    //Getting Everything from Google SHeet 
+      //1. make two arrays - one for blue and yello box =-
+      //2. get the ranges for blu queue. 
 
   game_data = response.result.values
 
@@ -30,7 +33,7 @@ async function getBlueQueue() {
   console.log('index show', game_data.at(0)) //printing the first one 
 
   //EX:
-  document.getElementById('que1').innerHTML = game_data.at(0); //this places the game_data into the first input 
+  document.getElementById('que1').innerHTML = game_data.at(0); //this places the game_data into the first label 
 }
 
 
@@ -39,7 +42,7 @@ async function listMajors() {
   try {
     // fetching the 1 line 
     response = await gapi.client.sheets.spreadsheets.values.get({
-      spreadsheetId: '1FtbpxMN9mF1hbZNHS1_ASNrEOf5wIKpRxvI_hHL3gtk',
+      spreadsheetId: '1c9NUoB1prQdrBfAAkaSKJCnIGrAQV8kx5GZKEeIAmWs',
       range: 'Inspection!A2:A5',
     });
     console.log(response)
