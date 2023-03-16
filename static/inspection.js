@@ -47,33 +47,10 @@ async function get_teams() {
 }
 }
 
-//function to keep refreshing 
-
+//function to keep refreshing for google sheets 
 setInterval('get_teams()', 1000);
 
 
-//DELETE HERE
-async function listMajors() {
-  try {
-    // fetching the 1 line 
-    response = await gapi.client.sheets.spreadsheets.values.get({
-      spreadsheetId: '1c9NUoB1prQdrBfAAkaSKJCnIGrAQV8kx5GZKEeIAmWs',
-      range: 'Inspection!A2:A5',
-    });
-    console.log(response)
-  } catch (err) {
-    document.getElementById('content').innerText = err.message;
-    //document.getElementById('content').innerText = err.message;
-    return;
-  }
-
-  const output = range.values.reduce(
-    (str, row) => `${str}${row[0]}, ${row[4]}\n`,
-    'Name, Major:\n');
-  document.getElementById('content').innerText = output;
-
-  console.log(game_data)
-}
 
 
 
