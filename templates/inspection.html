@@ -7,9 +7,12 @@
     <title>Inspection</title>
     <link rel="stylesheet" href="../static/inspection.css">
     <script src ="../static/inspection.js"> </script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script> <!-- javascript can grab the data -->
+
     
 </head>
 <body>
+    
     <div class="header">
         <a class="box"> Queuing </a>
         <a class="box"> Inspecting</a>
@@ -20,55 +23,53 @@
     <div class = "container">
 
         <!-- BLUE BOX = QUEUING -->
-        <div class = "team-box-blue" id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-            
-            <input class = "input" id = "queuing"
-             placeholder ="Team Name 1" type = "text" draggable="true" ondragstart="drag(event)" id="drag1"></input>
-            <input class = "input" placeholder ="Team Name 2" type = "text" draggable="true" ondragstart="drag(event)" id="drag2"></input>
-            <input class = "input" placeholder ="Team Name 3" type = "text" draggable="true" ondragstart="drag(event)" id="drag3"></input>
+        <div class = "team-box-blue" >
+            <label class = "input" id="que0"></label>
+            <label class = "input"  id="que1"></label>
+            <label class = "input" id="que2"></label>
 
         </div>
 
         <!-- BLUE BOX = Inspecting -->
-        <div class = "team-box-blue" id = "inspecting"
-        id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class = "team-box-blue"> 
+
+            <label class = "input" id="insp0"></label>
+            <label class = "input"  id="insp1"></label>
+            <label class = "input" id="insp2"></label>
         </div>
 
         <!-- BLUE BOX = playing -->
-        <div class = "team-box-blue" id="playing" ondrop="drop(event)" ondragover="allowDrop(event)">
-
-            <input class = "input" placeholder ="Team Name #" type = "text" draggable="true" ondragstart="drag(event)" id="drag4"></input>
-            <input class = "input" placeholder ="Team Name #" type = "text" draggable="true" ondragstart="drag(event)" id="drag5"></input>
-            <input class = "input" placeholder ="Team Name #" type = "text" draggable="true" ondragstart="drag(event)" id="drag6"></input>
+        <div class = "team-box-blue">
+            <label class = "input" id="play0"></label>
+            <label class = "input"  id="play1"></label>
+            <label class = "input" id="play2"></label>
         </div>
 
         
 
         <!-- YELLOW BOX  = Queuing -->
         <div class = "team-box-yellow">
-            <input class = "input" id ="queuing"
-            placeholder ="Team Name 4" type = "text"></input>
-            <input class = "input" placeholder ="Team Name 5" type = "text"></input>
-            <input class = "input" placeholder ="Team Name 6" type = "text"></input>
+            <label class = "input" id ="que3"></label>
+            <label class = "input"  id="que4"> </label>
+            <label class = "input"  id="que5" ></label>
         </div>
 
         <!-- YELLOW BOX = Inspecting -->
-        <div class = "team-box-yellow" id = "inspecting"> </div>
+        <div class = "team-box-yellow" >
+            <label class = "input" id="insp3"></label>
+            <label class = "input"  id="insp4"></label>
+            <label class = "input" id="insp5"></label>
+        </div>
 
         <!-- YELLOW BOX = Playing -->
-        <div class = "team-box-yellow" id = "playing">
-            <input class = "input" placeholder ="Team Name #" type = "text"></input>
-            <input class = "input" placeholder ="Team Name #" type = "text"></input>
-            <input class = "input" placeholder ="Team Name #" type = "text"></input>
+        <div class = "team-box-yellow" >
+            <label class = "input" id ="play3"></label>
+                <label class = "input"  id="play4"> </label>
+                <label class = "input"  id="play5" ></label>
         </div>
 
     </div>
-
-
-
-
-    
-    
+        
 
 </body>
 </html>
