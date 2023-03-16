@@ -6,12 +6,12 @@ function gapiLoaded() {
           apiKey: API_KEY,
           discoveryDocs: [DISCOVERY_DOC],
       });
-      getBlueQueue();
+      get_teams();
   });
 }
 
 //issue? We need to reload the page, each time we make a change to the google sheet 
-async function getBlueQueue() {
+async function get_teams() {
   try {
     // fetching the 1 line 
     response = await gapi.client.sheets.spreadsheets.values.get({
@@ -44,11 +44,15 @@ async function getBlueQueue() {
     document.getElementById('que'+ String(i)).innerHTML = row.at(0); //this places the game_data into the first input
     document.getElementById('insp'+ String(i)).innerHTML = row.at(1);
     document.getElementById('play'+ String(i)).innerHTML = row.at(2);
-    console.log("testing row: ", row)
 }
 }
 
+//function to keep refreshing 
 
+setInterval('get_teams()', 1000);
+
+
+//DELETE HERE
 async function listMajors() {
   try {
     // fetching the 1 line 
