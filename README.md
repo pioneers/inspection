@@ -5,4 +5,4 @@ Inspection website for students and staff to keep track of who is queueing, in i
 
 [figma](https://www.figma.com/file/51vYqtcdm1tFntm0tgnYwL/Inspection?t=pOCZxkPrTl1bEM18-)
 
-[API GooglSheet](https://docs.google.com/spreadsheets/d/1EFGPYQuHY-vyi8J_P5XpOEQH-1U4FmjnfXKyFBuE7Wc/edit#gid=0)
+[API GooglSheet](https://docs.google.com/spreadsheets/d/1c9NUoB1prQdrBfAAkaSKJCnIGrAQV8kx5GZKEeIAmWs/edit#gid=66259830)
